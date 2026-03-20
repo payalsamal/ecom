@@ -1,0 +1,57 @@
+spring:
+  # API Versioning
+  mvc:
+    api-versioning:
+      supported-versions: 1, 2
+      default-version: 1
+      request-header:
+        enabled: true
+        name: X-API-Version
+
+  # DataSource - PostgreSQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecom
+    username: app_user
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  # JPA / Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # MongoDB
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ecom
+
+# SpringDoc / Swagger
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    try-it-out-enabled: true
+    display-request-duration: true
+    groups-order: asc
+    tags-sorter: alpha
+    operations-sorter: alpha
+
+# Server
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.example.ecom: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
