@@ -1,5 +1,7 @@
 package com.example.ecom.product.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,27 @@ public class ProductService {
 				.price(dto.price())
 				.build();
 		return prod;
+	}
+	
+	public List<ProductDto> getAll() {
+		
+			return (productRepository.findAll().stream().map(this::mapEntityToDto).toList());
+		
+		}
+	ProductDto mapEntityToDto(Product dto)
+	{
+		ProductDto prod = ProductDto.builder()
+				.category(dto.getCategory())
+				.inStock(dto.isInStock())
+				.name(dto.getName())
+				.price(dto.getPrice())
+				.id(dto.getId())
+				.build();
+		return prod;
+	}
+	public List<ProductDto> getAllInstock() {
+		
+		return (productRepository.findAll().stream().map(this::mapEntityToDto).filter(ProductDto::inStock).toList());
+	
 	}
 }
