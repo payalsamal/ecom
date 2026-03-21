@@ -1,8 +1,11 @@
 package com.example.ecom.product.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +25,13 @@ public class ProductController {
 	ResponseEntity<String>saveProduct(@RequestBody ProductDto productDto){
 		productService.saveProduct(productDto);
 		return  new ResponseEntity<String>("Saved successfully", HttpStatus.CREATED );
+	}
+	@GetMapping(version="1")
+	ResponseEntity<List<ProductDto>>getAllProduct(){
+		return  new ResponseEntity<List<ProductDto>>(productService.getAll(),HttpStatus.OK);
+	}
+	@GetMapping(version="2")
+	ResponseEntity<List<ProductDto>>getAllProductv2(){
+		return  new ResponseEntity<List<ProductDto>>(productService.getAllInstock(),HttpStatus.OK);
 	}
 }
