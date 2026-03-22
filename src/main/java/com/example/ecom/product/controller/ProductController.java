@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.ecom.product.model.ProductDto;
+import com.example.ecom.product.model.ProductList;
 import com.example.ecom.product.service.ProductService;
 
 @RestController
@@ -33,5 +35,10 @@ public class ProductController {
 	@GetMapping(version="2")
 	ResponseEntity<List<ProductDto>>getAllProductv2(){
 		return  new ResponseEntity<List<ProductDto>>(productService.getAllInstock(),HttpStatus.OK);
+	}
+	@GetMapping(version="3")
+	ResponseEntity<ProductList>getAllProductPaginatio(@RequestParam Integer
+			pageNo, @RequestParam Integer size ){
+		return  new ResponseEntity<ProductList>(productService.getAllWithPagination(pageNo,size),HttpStatus.OK);
 	}
 }
