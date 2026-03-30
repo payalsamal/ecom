@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.ecom.product.entity.Product;
 import com.example.ecom.product.model.ProductDto;
@@ -17,10 +18,15 @@ public class ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
-
+	@Transactional
 	public void saveProduct(ProductDto productDto) {
 		Product prod = productRepository.save(mapDtoToEntity(productDto));
 		System.out.println(prod.toString());
+	}
+	@Transactional
+	public void saveAllProduct(List<ProductDto> productDto) {
+		productRepository.saveAll(productDto.stream().map(x->mapDtoToEntity(x)).toList());
+		
 	}
 
 	Product mapDtoToEntity(ProductDto dto) {
