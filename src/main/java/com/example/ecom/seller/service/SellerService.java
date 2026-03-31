@@ -12,8 +12,10 @@ import com.example.ecom.seller.repository.SellerRepository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class SellerService {
 	
 	@Autowired
