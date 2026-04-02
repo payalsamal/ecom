@@ -24,9 +24,9 @@ public class ProductService {
 		System.out.println(prod.toString());
 	}
 	@Transactional
-	public void saveAllProduct(List<ProductDto> productDto) {
-		productRepository.saveAll(productDto.stream().map(x->mapDtoToEntity(x)).toList());
-		
+	public List<ProductDto> saveAllProduct(List<ProductDto> productDto) {
+		productDto = productRepository.saveAll(productDto.stream().map(x->mapDtoToEntity(x)).toList()).stream().map(prod-> mapEntityToDto(prod)).toList() ;
+		return productDto;
 	}
 
 	Product mapDtoToEntity(ProductDto dto) {
