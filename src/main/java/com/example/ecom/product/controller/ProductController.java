@@ -41,4 +41,10 @@ public class ProductController {
 			pageNo, @RequestParam Integer size ){
 		return  new ResponseEntity<ProductList>(productService.getAllWithPagination(pageNo,size),HttpStatus.OK);
 	}
+	
+	@PostMapping
+	ResponseEntity<List<ProductDto>>saveAllProduct(@RequestBody List<ProductDto> productDto){
+		;
+		return  new ResponseEntity<List<ProductDto>>(productService.saveAllProduct(productDto), HttpStatus.CREATED );
+	}
 }
