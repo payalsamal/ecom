@@ -8,3 +8,20 @@ type ProductDto {
     price: Float
 }
 
+type Mutation{
+	saveUser(user: ApplicationUserInput): ApplicationUserDto
+}
+type ApplicationUserDto {
+    id: ID
+    email: String
+    userType: String
+    active: Boolean
+    userName: String
+}
+
+input ApplicationUserInput {
+    email: String
+    password: String
+    userType: String
+    userName: String
+}
