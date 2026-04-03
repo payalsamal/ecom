@@ -1,0 +1,10 @@
+type Query {
+    getProducts: [ProductDto]
+}
+
+type ProductDto {
+    id: ID
+    name: String
+    price: Float
+}
+
