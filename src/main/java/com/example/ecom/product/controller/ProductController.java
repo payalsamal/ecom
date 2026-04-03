@@ -42,7 +42,7 @@ public class ProductController {
 		return  new ResponseEntity<ProductList>(productService.getAllWithPagination(pageNo,size),HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping("/save-all")
 	ResponseEntity<List<ProductDto>>saveAllProduct(@RequestBody List<ProductDto> productDto){
 		;
 		return  new ResponseEntity<List<ProductDto>>(productService.saveAllProduct(productDto), HttpStatus.CREATED );
