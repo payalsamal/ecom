@@ -38,6 +38,10 @@ spring:
   data:
     mongodb:
       uri: mongodb://localhost:27017/ecom
+   #graphql
+  graphql:
+    graphiql:
+      enabled: true
 
 # SpringDoc / Swagger
 springdoc:
@@ -56,6 +60,10 @@ server:
   port: 8080
   
 
+
+  
+  
+  
 # Logging
 logging:
   level:
